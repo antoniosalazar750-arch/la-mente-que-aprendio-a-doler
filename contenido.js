@@ -33,6 +33,16 @@ window.APP = {
     boton: "Leer la entrevista en Excélsior"
   },
 
+  tienda: {
+    kicker: "Del mismo equipo",
+    titulo: "Lee también a Daniel Macías",
+    texto: "Daniel, el esposo de Martha, perdió una pierna y volvió a ponerse de pie. En su libro comparte el método que usó, con la intensidad del futbol americano.",
+    items: [
+      { img: "libro-dani.jpg", titulo: "Levántate de cualquier tacleada", texto: "Test de 3 minutos: descubre qué te está tacleando hoy.", boton: "Hacer el test de Daniel", enlace: "https://levantate-de-cualquier-tacleada.vercel.app/?utm_source=app-martha", ev: "clic_tienda_dani" },
+      { titulo: "Llévate los dos libros", texto: "La mente que aprendió a doler + Levántate de cualquier tacleada, con precio especial.", boton: "Pedir los dos por WhatsApp", wa: "Hola Martha, hice el test y me salió {nombre}. Quiero los dos libros con el precio especial.", ev: "clic_tienda_combo", secundario: true }
+    ]
+  },
+
   escena: "escena.jpg",
   logo: "flor-dorada.png",
   logoClaro: "flor-blanca.png",

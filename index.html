@@ -114,6 +114,10 @@ audio{width:100%;margin:6px 0 4px}
 .final{text-align:center;margin:36px 4px 0}
 .final q{font-family:Newsreader,Georgia,serif;font-style:italic;font-size:22px;line-height:1.35;quotes:"“" "”"}
 .final small{display:block;color:var(--mute);font-size:13px;margin-top:8px}
+.shop{margin-top:22px;background:var(--panel);border:1px solid var(--line);border-radius:20px;padding:22px 20px}
+.shop h2{margin-top:2px}.shop .item{display:flex;gap:14px;align-items:flex-start;padding:16px 0 4px;border-top:1px solid var(--line);margin-top:14px}
+.shop .item img{width:84px;height:auto;border-radius:5px;box-shadow:0 8px 18px rgba(0,0,0,.22);flex:none}
+.shop .item>div{flex:1;min-width:0}.shop .item strong{display:block;font-size:17px;line-height:1.25}.shop .item span{display:block;color:var(--mute);font-size:14px;margin:4px 0 10px}.shop .item em{display:block;font-style:normal;font-weight:700;color:var(--deep);margin:-4px 0 10px}
 .author{margin-top:34px;border-radius:20px;padding:24px 20px;background:var(--deep);color:#fff}
 .author h2{color:#fff}.author .kicker{color:var(--sky2)}
 .author ul{margin:8px 0 18px;padding-left:20px}.author li{margin-bottom:6px}
@@ -292,6 +296,8 @@ function result(){
     <div class="stack"><a class="btn ghost small" data-ev="clic_fil" href="${wa(`Hola ${B.autorCorto}, quiero asistir a: ${B.evento.titulo}, de “${B.titulo}”.`)}" target="_blank" rel="noopener">Quiero ir a la presentación</a></div>`:""}
    </div>
   </div>
+
+  ${A.tienda&&A.tienda.items?(()=>{const its=A.tienda.items.filter(it=>it.enlace||(it.wa&&C.wa));return its.length?`<div class="shop"><div class="kicker">${esc(A.tienda.kicker||"También te puede servir")}</div><h2>${esc(A.tienda.titulo)}</h2>${A.tienda.texto?`<p class="mute">${esc(A.tienda.texto)}</p>`:""}${its.map(it=>`<div class="item">${it.img?`<img src="${esc(it.img)}" alt="">`:""}<div><strong>${esc(it.titulo)}</strong>${it.texto?`<span>${esc(it.texto)}</span>`:""}${it.precio?`<em>${esc(it.precio)}</em>`:""}<a class="btn small${it.secundario?" ghost":""}" data-ev="${esc(it.ev||"clic_tienda")}" href="${esc(it.enlace||wa(fill(it.wa,m)))}" target="_blank" rel="noopener">${esc(it.boton||"Ver más")}</a></div></div>`).join("")}</div>`:""})():""}
 
   ${A.prensa?`<div class="press">
    <div class="medio">Publicado en <b>${esc(A.prensa.medio)}</b>${A.prensa.fecha?` · ${esc(A.prensa.fecha)}`:""}</div>
