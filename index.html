@@ -182,7 +182,7 @@ let SID="";try{SID=sessionStorage.getItem("qtm-sid")||""}catch(e){}
 if(!SID){SID=Math.random().toString(36).slice(2,10);try{sessionStorage.setItem("qtm-sid",SID)}catch(e){}}
 function track(ev,extra){
  if(!C.endpoint)return;
- const body=JSON.stringify(Object.assign({ev,sid:SID,src:SRC},extra||{}));
+ const body=JSON.stringify(Object.assign({ev,sid:SID,src:SRC,app:C.app||B.titulo},extra||{}));
  try{if(navigator.sendBeacon&&navigator.sendBeacon(C.endpoint,new Blob([body],{type:"text/plain;charset=utf-8"})))return}catch(e){}
  try{fetch(C.endpoint,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body})}catch(e){}
 }
@@ -329,17 +329,18 @@ function result(){
  window.scrollTo({top:0});
 }
 function leadForm(m){
- const box=$("lead");
- if(C.registro===false){box.remove();return}
- if(st.lead){box.innerHTML=`<div class="kicker">Listo</div><h2>Te acompaño estos 7 días.</h2><p class="mute">${esc(B.autorCorto)} te escribirá por WhatsApp con el paso de cada día.</p>${C.comunidad?`<a class="btn ghost small" data-ev="clic_comunidad" href="${esc(C.comunidad)}" target="_blank" rel="noopener">Únete también a la comunidad</a>`:""}`;return}
- box.innerHTML=`<div class="kicker">No lo hagas solo</div><h2>Recibe tu paso de cada día por WhatsApp</h2>
-  <p class="mute">Durante 7 días ${esc(B.autorCorto)} te acompaña con el paso que te toca, para que esto no se quede en un test.</p>
+ const box=$("lead"),AC=A.acompanamiento||{};
+ if(C.registro===false||(!C.comunidad&&!C.endpoint&&!C.wa)){box.remove();return}
+ const join=C.comunidad?`<a class="btn" data-ev="clic_comunidad" href="${esc(C.comunidad)}" target="_blank" rel="noopener">${esc(AC.boton||"Entrar al grupo de WhatsApp")}</a>`:"";
+ if(st.lead){box.innerHTML=`<div class="kicker">Listo</div><h2>${esc(AC.listo||"Ya eres parte.")}</h2><p class="mute">${C.comunidad?esc(AC.listoTexto||"Si todavía no entraste al grupo, hazlo aquí:"):esc(B.autorCorto)+" te escribirá por WhatsApp."}</p>${join}`;return}
+ box.innerHTML=`<div class="kicker">${esc(AC.kicker||"No lo hagas solo")}</div><h2>${esc(AC.titulo||"Únete a la comunidad")}</h2>
+  <p class="mute">${esc(AC.texto||"Recibe reflexiones, ejercicios y avisos de las próximas pláticas en WhatsApp.")}</p>
   <form id="lf" novalidate>
    <label class="f" for="ln">Tu nombre</label><input type="text" id="ln" autocomplete="name" maxlength="60" value="${esc(st.name)}">
    <label class="f" for="lw">Tu WhatsApp (10 dígitos)</label><input type="tel" id="lw" autocomplete="tel" inputmode="tel" maxlength="20" placeholder="Ej. 33 1234 5678">
-   <label class="check"><input type="checkbox" id="lc"><span>Acepto que ${esc(B.autor)} use mi nombre y WhatsApp solo para acompañarme en este camino y darme noticias del libro. Puedo darme de baja escribiendo BAJA.${C.privacidad?` <a href="${esc(C.privacidad)}" target="_blank" rel="noopener">Aviso de privacidad</a>.`:""}</span></label>
+   <label class="check"><input type="checkbox" id="lc"><span>Acepto que ${esc(B.autor)} use mi nombre y WhatsApp para acompañarme y darme noticias del libro. Puedo darme de baja escribiendo BAJA.${C.privacidad?` <a href="${esc(C.privacidad)}" target="_blank" rel="noopener">Aviso de privacidad</a>.`:""}</span></label>
    <div class="err" id="le" role="alert"></div>
-   <button class="btn" type="submit">Quiero que me acompañes</button>
+   <button class="btn" type="submit">${esc(AC.enviar||"Quiero unirme")}</button>
   </form>`;
  $("lf").onsubmit=e=>{
   e.preventDefault();
@@ -347,9 +348,11 @@ function leadForm(m){
   if(!n){$("le").textContent="Escribe tu nombre.";return}
   if(w.length<10){$("le").textContent="Revisa tu número: deben ser al menos 10 dígitos.";return}
   if(!ok){$("le").textContent="Necesitamos tu autorización para escribirte.";return}
-  st.name=st.name||n;
-  if(C.endpoint){track("registro",{nombre:n,wa:w,res:m.nombre,ok:true});st.lead=true;save();leadForm(m)}
-  else{st.lead=true;save();window.open(wa(`Hola ${B.autorCorto}, soy ${n}. Hice el test y me salió: ${m.nombre}. Quiero que me acompañes los 7 días.`),"_blank");leadForm(m)}
+  st.name=st.name||n;st.lead=true;save();
+  track("registro",{nombre:n,wa:w,res:m.nombre,ok:true});
+  if(C.comunidad)window.open(C.comunidad,"_blank");
+  else if(!C.endpoint&&C.wa)window.open(wa(`Hola ${B.autorCorto}, soy ${n}. Hice el test y me salió: ${m.nombre}. Quiero ser parte de la comunidad.`),"_blank");
+  leadForm(m);
  };
 }
 function wrap(ctx,text,x,y,maxW,lh){

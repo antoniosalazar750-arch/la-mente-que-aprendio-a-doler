@@ -1,12 +1,15 @@
 /* CONTENIDO — "La mente que aprendió a doler", de Martha Lugo (WAS Editorial) */
 window.APP = {
   config: {
-    wa: "",
-    endpoint: "",
-    registro: false,
+    app: "Martha",          // nombre corto con el que se identifica esta app en el Sheet
+    wa: "",                 // WhatsApp de Martha con 52, ej. "523312345678"
+    endpoint: "",           // URL del Apps Script (la misma que en la app de Dani)
+    comunidad: "",          // enlace del grupo o comunidad de WhatsApp de Martha
+    registro: true,
     sitio: "la-mente-que-aprendio-a-doler.vercel.app",
-    firmado: "https://waseditorial.com/bookstore/#!/La-mente-que-aprendio-a-doler/p/873558047",
-    amz: "", ml: "", editorial: ""
+    firmado: "libro.html#pedido",
+    editorial: "https://waseditorial.com/bookstore/#!/La-mente-que-aprendio-a-doler/p/873558047",
+    amz: "", ml: ""
   },
 
   libro: {
@@ -33,13 +36,81 @@ window.APP = {
     boton: "Leer la entrevista en Excélsior"
   },
 
+  acompanamiento: {
+    kicker: "No lo hagas sola ni solo",
+    titulo: "Únete a la comunidad de Martha",
+    texto: "En la comunidad de WhatsApp Martha comparte cómo funciona tu mente, ejercicios para sanar y avisos de sus próximos talleres de neurociencia e imagen personal.",
+    boton: "Entrar al grupo de WhatsApp",
+    enviar: "Quiero unirme"
+  },
+
+  landing: {
+    prefijo: "LM",
+    titular: "La mente que aprendió a doler",
+    bajada: "Si alguna vez te has preguntado por qué repites los mismos miedos, relaciones o emociones, este libro puede darte una respuesta distinta.",
+    testBoton: "Haz el test del libro",
+    paraQuien: [
+      "Repites los mismos miedos, relaciones o emociones y no sabes por qué.",
+      "Hay recuerdos que todavía revives como si estuvieran pasando hoy.",
+      "Cargas culpa por lo que viviste o por lo que decidiste.",
+      "Te pesa más lo que otros dijeron de ti que lo que tú sabes de ti.",
+      "Quieres entender cómo la mente y la fe pueden trabajar juntas para sanar."
+    ],
+    historia: {
+      titulo: "Martha vivió lo que hoy explica",
+      parrafos: [
+        "Martha Lugo conoce de cerca una mente que aprende desde el dolor: la que repite miedos, culpas y heridas aunque lo que las causó ya haya pasado.",
+        "Su camino de sanación la llevó a formarse como neurocoach y a unir la neurociencia con la espiritualidad. Hoy mira su historia con otros ojos: el recuerdo sigue ahí, pero ya no duele como antes.",
+        "En este libro comparte su historia y ejercicios prácticos para que tu mente aprenda un camino nuevo, del dolor a la paz.",
+        "Martha también acompaña procesos de neurocoaching y de imagen personal, porque lo que se transforma por dentro se refleja por fuera."
+      ]
+    },
+    cita: { t: "La mente aprende, pero aprende desde el dolor.", r: "Martha Lugo" },
+    capitulosTitulo: "Algunos de los capítulos",
+    capitulosIntro: "Cada capítulo une una parte de su historia con lo que la neurociencia explica y un ejercicio para ponerlo en práctica.",
+    capitulos: [
+      [1, "Del silencio a la culpa", "Cuando un recuerdo se revive como si siguiera ocurriendo."],
+      [2, "Una madre adolescente", "La culpa que se queda aunque la historia ya cambió."],
+      [3, "Modo supervivencia extrema", "Lo que pasa cuando crees lo que otros dijeron de ti."],
+      [7, "De la pérdida al crecimiento", "Dejar de elegir desde el miedo y la carencia."],
+      [8, "Fidel, la nueva normalidad", "Soltar el control y volver a la paz."]
+    ],
+    testTitulo: "¿Qué aprendió a sostener tu mente?",
+    testTexto: "Tres minutos para descubrir qué capítulo es para ti hoy, con un ejercicio del libro.",
+    pedidoTitulo: "Pide tu libro firmado y dedicado por Martha",
+    pedidoTexto: "Martha lo dedica a mano para ti o para la persona que elijas, y te lo enviamos a donde estés.",
+    precios: {
+      uno: { precio: "", pago: "" },
+      combo: { precio: "", pago: "" }
+    },
+    envio: "",
+    entregaLocal: "En Guadalajara. Acordamos el lugar contigo por WhatsApp.",
+    combo: {
+      titulo: "Los dos libros: Martha y Daniel",
+      texto: "La mente que aprendió a doler + Levántate de cualquier tacleada, ambos dedicados y con precio especial.",
+      img: "libro-dani.jpg",
+      otroTitulo: "Levántate de cualquier tacleada, de Daniel Macías",
+      otroTexto: "Daniel, esposo de Martha, perdió una pierna y volvió a ponerse de pie. Su libro es el método que usó, contado desde la cancha.",
+      enlace: "https://levantate-de-cualquier-tacleada.vercel.app/libro.html?utm_source=landing-martha",
+      boton: "Conoce el libro de Daniel"
+    },
+    faq: [
+      ["¿Cuánto cuesta el envío?", "Se envía por paquetería (Fedex o Estafeta) y cuesta alrededor de $130 a $150, según tu ciudad. Te confirmamos el total exacto por WhatsApp antes de pagar."],
+      ["¿Cómo pago?", "Con tarjeta o transferencia a través de Mercado Pago. Te mandamos el enlace por WhatsApp junto con el total."],
+      ["¿Cuánto tarda en llegar?", "Lo dedicamos y lo enviamos en cuanto se confirma tu pago. La paquetería tarda de 1 a 3 días hábiles."],
+      ["¿Puedo regalarlo?", "Sí. Escribe el nombre de la persona en la dedicatoria y la dirección donde quieres que llegue."],
+      ["¿Lo puedo comprar sin dedicatoria?", "Sí, en la tienda de WAS Editorial. El enlace está al final de esta página."]
+    ],
+    redes: []
+  },
+
   tienda: {
     kicker: "Del mismo equipo",
     titulo: "Lee también a Daniel Macías",
     texto: "Daniel, el esposo de Martha, perdió una pierna y volvió a ponerse de pie. En su libro comparte el método que usó, con la intensidad del futbol americano.",
     items: [
       { img: "libro-dani.jpg", titulo: "Levántate de cualquier tacleada", texto: "Test de 3 minutos: descubre qué te está tacleando hoy.", boton: "Hacer el test de Daniel", enlace: "https://levantate-de-cualquier-tacleada.vercel.app/?utm_source=app-martha", ev: "clic_tienda_dani" },
-      { titulo: "Llévate los dos libros", texto: "La mente que aprendió a doler + Levántate de cualquier tacleada, con precio especial.", boton: "Pedir los dos por WhatsApp", wa: "Hola Martha, hice el test y me salió {nombre}. Quiero los dos libros con el precio especial.", ev: "clic_tienda_combo", secundario: true }
+      { titulo: "Llévate los dos libros", texto: "La mente que aprendió a doler + Levántate de cualquier tacleada, dedicados y con precio especial.", boton: "Pedir los dos dedicados", enlace: "libro.html#pedido", ev: "clic_tienda_combo", secundario: true }
     ]
   },
 
@@ -56,7 +127,7 @@ window.APP = {
     tarjeta2: "Lo que hoy elijo",
     ritualTitulo: "7 días para la mente y el espíritu",
     nota: "¿Qué historia te estás contando sobre ti que ya no es verdad?",
-    firmado: "Consigue el libro",
+    firmado: "Pide tu ejemplar dedicado",
     notaIntro: "Un ejercicio de reflexión basado en el libro. No es un diagnóstico.",
     pieLegal: "Ejercicio de reflexión; no es un diagnóstico ni sustituye atención profesional."
   },
