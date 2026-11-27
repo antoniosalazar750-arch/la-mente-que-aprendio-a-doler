@@ -2,7 +2,7 @@
 window.APP = {
   config: {
     app: "Martha",          // nombre corto con el que se identifica esta app en el Sheet
-    wa: "",                 // WhatsApp de Martha con 52, ej. "523312345678"
+    wa: "525571224272",
     endpoint: "",           // URL del Apps Script (la misma que en la app de Dani)
     comunidad: "",          // enlace del grupo o comunidad de WhatsApp de Martha
     registro: true,
@@ -51,18 +51,18 @@ window.APP = {
     testBoton: "Haz el test del libro",
     paraQuien: [
       "Repites los mismos miedos, relaciones o emociones y no sabes por qué.",
-      "Hay recuerdos que todavía revives como si estuvieran pasando hoy.",
+      "Viviste abuso, una pérdida familiar o económica, o un cambio fuerte en tu relación.",
       "Cargas culpa por lo que viviste o por lo que decidiste.",
-      "Te pesa más lo que otros dijeron de ti que lo que tú sabes de ti.",
+      "Cuidas a alguien que amas y que está enfermo.",
       "Quieres entender cómo la mente y la fe pueden trabajar juntas para sanar."
     ],
     historia: {
       titulo: "Martha vivió lo que hoy explica",
       parrafos: [
-        "Martha Lugo conoce de cerca una mente que aprende desde el dolor: la que repite miedos, culpas y heridas aunque lo que las causó ya haya pasado.",
-        "Su camino de sanación la llevó a formarse como neurocoach y a unir la neurociencia con la espiritualidad. Hoy mira su historia con otros ojos: el recuerdo sigue ahí, pero ya no duele como antes.",
-        "En este libro comparte su historia y ejercicios prácticos para que tu mente aprenda un camino nuevo, del dolor a la paz.",
-        "Martha también acompaña procesos de neurocoaching y de imagen personal, porque lo que se transforma por dentro se refleja por fuera."
+        "Alrededor de los 32 años, Martha Lugo sentía que su vida no tenía valor. Había vivido una maternidad temprana, el divorcio de sus padres, abuso sexual, crisis en su matrimonio, la pérdida de embarazos y problemas económicos, y no lograba ver hacia dónde la llevaba tanto dolor.",
+        "A los 36 empezó un camino espiritual y de autoconocimiento que sigue recorriendo hoy. Aprendió a mirar lo que vivió sin dejar que eso definiera quién es, y descubrió que no necesita ser una mejor versión de sí misma para merecer amor ni paz.",
+        "También acompañó a su esposo, Daniel, cuando tuvo que autorizar la amputación que le salvó la vida: la decisión más difícil de su vida, que atravesó sostenida por su fe.",
+        "Asesora de imagen desde 2009 y neurocoach certificada desde 2021, en este libro une su historia con lo que la neurociencia explica de la mente y con su fe, para que dejes de mirarte solo a través de tu pasado."
       ]
     },
     cita: { t: "La mente aprende, pero aprende desde el dolor.", r: "Martha Lugo" },
@@ -81,7 +81,7 @@ window.APP = {
     pedidoTexto: "Martha lo dedica a mano para ti o para la persona que elijas, y te lo enviamos a donde estés.",
     precios: {
       uno: { precio: "", pago: "" },
-      combo: { precio: "", pago: "" }
+      combo: { precio: "$710 envío incluido", pago: "" }
     },
     envio: "",
     entregaLocal: "En Guadalajara. Acordamos el lugar contigo por WhatsApp.",
@@ -101,7 +101,7 @@ window.APP = {
       ["¿Puedo regalarlo?", "Sí. Escribe el nombre de la persona en la dedicatoria y la dirección donde quieres que llegue."],
       ["¿Lo puedo comprar sin dedicatoria?", "Sí, en la tienda de WAS Editorial. El enlace está al final de esta página."]
     ],
-    redes: []
+    redes: [["Instagram", "https://www.instagram.com/marthalugoautora"]]
   },
 
   tienda: {
